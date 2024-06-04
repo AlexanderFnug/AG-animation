@@ -1,7 +1,7 @@
 body, html {
     background-color: black;
     color: white;
-    font-family:  monospace;
+    font-family: monospace;
     font-size: 10px;
     margin: 0;
     padding: 0;
@@ -15,8 +15,21 @@ body, html {
 #ascii-art {
     line-height: 7px;
     white-space: pre;
+    position: absolute;
+    top: 50%;
+    left: -100%;
+    background-color: rgba(0, 0, 0, 0); /* Ensure background is transparent */
 }
 
+#ascii-art2 {
+    line-height: 7px;
+    white-space: pre;
+    position: absolute;
+    top: 0%;
+    left: -100%;
+    background-color: rgba(0, 0, 0, 0); /* Ensure background is transparent */
+    z-index: 100;
+}
 
 h1 {
     position: absolute;

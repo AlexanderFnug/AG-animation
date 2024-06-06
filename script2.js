@@ -1,14 +1,16 @@
 const sketch2 = (p) => {
-    const density2 = '${MB} ';
+    const density2 = 'mb%*o!;:,. ';
   
     let buffer2;
     let asciiDiv2;
     let radii2 = [];
+    let heights2 = [];
     let circleIndex2 = 0;
     let maxCircles2 = 30;
     let maxRadius2 = 500;
-    let growthRate2 = 2;
-    let delayBetweenCircles2 = 20;
+    let growthRate2 = 4;
+    let heightGrowthRate2 = 3; // Adjust this to change the vertical growth rate
+    let delayBetweenCircles2 = 5;
     let frameCountDelay2 = 0;
   
     p.setup = () => {
@@ -21,6 +23,7 @@ const sketch2 = (p) => {
   
       for (let i = 0; i < maxCircles2; i++) {
         radii2.push(0);
+        heights2.push(0);
       }
     }
   
@@ -28,13 +31,13 @@ const sketch2 = (p) => {
       buffer2.clear(); // Clear the buffer to maintain transparency
       buffer2.noFill();
       buffer2.stroke(255);
-      buffer2.strokeWeight(4);
+      buffer2.strokeWeight(1);
   
       buffer2.push();
       buffer2.translate(buffer2.width / 4, buffer2.height / 8);
   
       for (let i = 0; i < maxCircles2; i++) {
-        buffer2.ellipse(0, 0, radii2[i], radii2[i]);
+        buffer2.ellipse(0, 0, radii2[i], heights2[i]);
       }
   
       buffer2.pop();
@@ -50,11 +53,13 @@ const sketch2 = (p) => {
       for (let i = 0; i <= circleIndex2; i++) {
         if (radii2[i] < maxRadius2) {
           radii2[i] += growthRate2;
+          heights2[i] += heightGrowthRate2;
         }
       }
   
       if (circleIndex2 == maxCircles2 - 1 && radii2[circleIndex2] >= maxRadius2) {
         radii2 = radii2.map(() => 0);
+        heights2 = heights2.map(() => 0);
         circleIndex2 = 0;
       }
   

@@ -1,40 +1,49 @@
 const sketch1 = (p) => {
-    const density = '${MB} ';
+    const density = 'mb%*o!;:,. ';
   
     let buffer;
     let asciiDiv;
     let radii = [];
+    let heights = [];
     let circleIndex = 0;
     let maxCircles = 30;
     let maxRadius = 400;
     let growthRate = 2;
-    let delayBetweenCircles = 20;
+    let heightGrowthRate // Adjust this to change the vertical growth rate
+    let delayBetweenCircles = 5;
     let frameCountDelay = 0;
-  
+    let heightDivisor = 8;
+
     p.setup = () => {
-      p.noCanvas();
-      buffer = p.createGraphics(p.windowWidth, p.windowHeight);
-      buffer.angleMode(p.DEGREES);
-      buffer.clear(); // Clear the buffer to make it transparent
-      asciiDiv = p.createDiv();
-      asciiDiv.id("ascii-art");
-  
-      for (let i = 0; i < maxCircles; i++) {
-        radii.push(0);
-      }
+        p.noCanvas();
+        buffer = p.createGraphics(p.windowWidth, p.windowHeight);
+        buffer.angleMode(p.DEGREES);
+        buffer.clear(); // Clear the buffer to make it transparent
+        asciiDiv = p.createDiv();
+        asciiDiv.id("ascii-art");
+        
+        for (let i = 0; i < maxCircles; i++) {
+            radii.push(0);
+            heights.push(0);
+            
+        }
     }
-  
+    
     p.draw = () => {
-      buffer.clear(); // Clear the buffer to maintain transparency
-      buffer.noFill();
-      buffer.stroke(255);
-      buffer.strokeWeight(4);
-  
-      buffer.push();
-      buffer.translate(buffer.width / 4, buffer.height / 8);
-  
-      for (let i = 0; i < maxCircles; i++) {
-        buffer.ellipse(0, 0, radii[i], radii[i]);
+        buffer.clear(); // Clear the buffer to maintain transparency
+        buffer.noFill();
+        buffer.stroke(255);
+        buffer.strokeWeight(1);
+        
+        buffer.push();
+        
+    buffer.translate(buffer.width / 4, buffer.height / heightDivisor);
+    
+    for (let i = 0; i < maxCircles; i++) {
+        
+        buffer.ellipse(0, 0, radii[i], heights[i]);
+        //buffer.rotate(360 / maxCircles);
+        heightGrowthRate = i/8 + 1;
       }
   
       buffer.pop();
@@ -50,14 +59,17 @@ const sketch1 = (p) => {
       for (let i = 0; i <= circleIndex; i++) {
         if (radii[i] < maxRadius) {
           radii[i] += growthRate;
+          heights[i] += heightGrowthRate;
         }
       }
   
       if (circleIndex == maxCircles - 1 && radii[circleIndex] >= maxRadius) {
         radii = radii.map(() => 0);
+        heights = heights.map(() => 0);
         circleIndex = 0;
       }
   
+      console.log("b");
       // Generate the ASCII art
       buffer.loadPixels();
       let asciiImage = "";

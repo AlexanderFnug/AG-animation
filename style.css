@@ -1,7 +1,11 @@
+@font-face {
+    font-family: 'AvenueX';
+    src: url('/AvenueX.otf') format('opentype');
+}
 body, html {
     background-color: black;
     color: white;
-    font-family: monospace;
+    font-family: 'AvenueX', sans-serif;
     font-size: 10px;
     margin: 0;
     padding: 0;
@@ -16,20 +20,50 @@ body, html {
     line-height: 7px;
     white-space: pre;
     position: absolute;
-    top: 50%;
     left: -100%;
     background-color: rgba(0, 0, 0, 0); /* Ensure background is transparent */
+    animation: slideLeft 50s linear infinite;
 }
 
 #ascii-art2 {
     line-height: 7px;
     white-space: pre;
     position: absolute;
-    top: 0%;
     left: -100%;
-    color: blue;
+    color: white;
     background-color: rgba(0, 0, 0, 0); /* Ensure background is transparent */
     z-index: 100;
+    animation: slideRight 50s linear infinite;
+}
+
+/* An animation that takes the element from left to right */
+@keyframes slideRight {
+    0% {
+        top: 50%;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+    }
+    100% {
+        top: -100%;
+        left: 100%;
+        width: 50%;
+        height: 50%;
+    }
+}
+@keyframes slideLeft {
+    0% {
+        top: 50%;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+    }
+    100% {
+        top: -100%;
+        left: -300%;
+        width: 50%;
+        height: 50%;
+    }
 }
 
 h1 {

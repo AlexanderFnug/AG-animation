@@ -7,9 +7,9 @@ const sketch2 = (p) => {
     let heights2 = [];
     let circleIndex2 = 0;
     let maxCircles2 = 30;
-    let maxRadius2 = 500;
-    let growthRate2 = 4;
-    let heightGrowthRate2 = 3; // Adjust this to change the vertical growth rate
+    let maxRadius2 = 400;
+    let growthRate2 = 2;
+    let heightGrowthRate2; // Adjust this to change the vertical growth rate
     let delayBetweenCircles2 = 5;
     let frameCountDelay2 = 0;
   
@@ -38,6 +38,8 @@ const sketch2 = (p) => {
   
       for (let i = 0; i < maxCircles2; i++) {
         buffer2.ellipse(0, 0, radii2[i], heights2[i]);
+        //buffer2.rotate(360 / maxCircles2);
+        heightGrowthRate2 = i / 8 + 1;
       }
   
       buffer2.pop();
@@ -85,4 +87,3 @@ const sketch2 = (p) => {
   };
   
   new p5(sketch2);
-  

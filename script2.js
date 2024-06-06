@@ -1,5 +1,7 @@
 const sketch2 = (p) => {
-    const density2 = 'mb%*o!;:,. ';
+    let word1 = "MB"
+    let word2 = "KG"
+    const density2 = `${word1} ${word2}.`;
   
     let buffer2;
     let asciiDiv2;
@@ -31,14 +33,14 @@ const sketch2 = (p) => {
       buffer2.clear(); // Clear the buffer to maintain transparency
       buffer2.noFill();
       buffer2.stroke(255);
-      buffer2.strokeWeight(1);
+      buffer2.strokeWeight(2);
   
       buffer2.push();
       buffer2.translate(buffer2.width / 4, buffer2.height / 8);
   
       for (let i = 0; i < maxCircles2; i++) {
         buffer2.ellipse(0, 0, radii2[i], heights2[i]);
-        //buffer2.rotate(360 / maxCircles2);
+        buffer2.rotate(360 / maxCircles2);
         heightGrowthRate2 = i / 8 + 1;
       }
   

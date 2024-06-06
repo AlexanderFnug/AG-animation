@@ -32,14 +32,14 @@ const sketch1 = (p) => {
       buffer.clear(); // Clear the buffer to maintain transparency
       buffer.noFill();
       buffer.stroke(255);
-      buffer.strokeWeight(1);
+      buffer.strokeWeight(2);
   
       buffer.push();
       buffer.translate(buffer.width / 4, buffer.height / 8);
   
       for (let i = 0; i < maxCircles; i++) {
         buffer.ellipse(0, 0, radii[i], heights[i]);
-        //buffer.rotate(360 / maxCircles);
+        buffer.rotate(360 / maxCircles);
         heightGrowthRate = i/8 + 1;
       }
   

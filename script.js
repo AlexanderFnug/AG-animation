@@ -1,6 +1,7 @@
 const sketch1 = (p) => {
-    const density = 'mb%*o!;:,. ';
-  
+    let word1 = "||"
+    let word2 = "KG"
+    const density = `${word1} ${word2}.`;
     let buffer;
     let asciiDiv;
     let radii = [];
@@ -9,7 +10,7 @@ const sketch1 = (p) => {
     let maxCircles = 30;
     let maxRadius = 400;
     let growthRate = 2;
-    let heightGrowthRate // Adjust this to change the vertical growth rate
+    let heightGrowthRate; // Adjust this to change the vertical growth rate
     let delayBetweenCircles = 5;
     let frameCountDelay = 0;
   
@@ -24,9 +25,8 @@ const sketch1 = (p) => {
       for (let i = 0; i < maxCircles; i++) {
         radii.push(0);
         heights.push(0);
-        
       }
-    }
+    };
   
     p.draw = () => {
       buffer.clear(); // Clear the buffer to maintain transparency
@@ -35,12 +35,22 @@ const sketch1 = (p) => {
       buffer.strokeWeight(2);
   
       buffer.push();
-      buffer.translate(buffer.width / 4, buffer.height / 8);
+      buffer.translate(buffer.width / 2, buffer.height / 2); // Center the buffer
+      let t = p.frameCount / 60.0; // Time variable
   
       for (let i = 0; i < maxCircles; i++) {
         buffer.ellipse(0, 0, radii[i], heights[i]);
+  
+        let x = radii[i] * p.cos(t * 60 + i * 10);
+        let y = heights[i] * p.sin(t * 60 + i * 10);
+        let size = 50 + 20 * p.sin(t * p.TWO_PI);
+        let offset = 100 * p.cos(t * p.TWO_PI);
+  
+        buffer.ellipse(x, y, size, size);
+        buffer.ellipse(x, y, size*offset, size);
+        buffer.ellipse(x, y, size, offset);
         buffer.rotate(360 / maxCircles);
-        heightGrowthRate = i/8 + 1;
+        heightGrowthRate = i / 8 + 1;
       }
   
       buffer.pop();
@@ -84,7 +94,7 @@ const sketch1 = (p) => {
         asciiImage += "<br/>";
       }
       asciiDiv.html(asciiImage);
-    }
+    };
   };
   
   new p5(sketch1);

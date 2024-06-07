@@ -21,8 +21,8 @@ body, html {
     white-space: pre;
     position: absolute;
     left: -50%;
-    background-color: rgba(0, 0, 0, 0); /* Ensure background is transparent */
-    animation: slideLeft 50s linear infinite;
+    background-color: rgba(0, 0, 0, 0); 
+    /* animation: slideLeft 50s linear infinite; */
 }
 
 #ascii-art2 {

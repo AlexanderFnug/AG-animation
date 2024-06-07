@@ -33,7 +33,7 @@ const sketch2 = (p) => {
       buffer2.clear(); // Clear the buffer to maintain transparency
       buffer2.noFill();
       buffer2.stroke(255);
-      buffer2.strokeWeight(2);
+      buffer2.strokeWeight(1);
   
       buffer2.push();
       buffer2.translate(buffer2.width / 4, buffer2.height / 8);
